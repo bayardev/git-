@@ -1,0 +1,8 @@
+#!/bin/bash
+# bootstrap
+
+# Load libraries
+for lib in `ls "${RootDir}/lib"`; do
+    #echo "${RootDir}/lib/${lib}"
+    . "${RootDir}/lib/${lib}"
+done
