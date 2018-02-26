@@ -9,10 +9,10 @@ export RootDir=${RootDir:-$(dirname "$(readlink -f "$0")")}
 . "${RootDir}/bootstrap"
 
 ## Get [command] argument
-[ -z "$1" ] && output.error "Missing [command] argument" && exit 1
+[ -z "$1" ] && output.warning "Missing [command] argument" && exit 1
 command="$1"
 export Command="${RootDir}/command/${command}.sh"
 
 ## Execute [command]
 [ ! -x "$Command" ] && output.fatalerror "script ${Command} is not executable" && exit 50
-"${RootDir}/command/${command}.sh"
+shift && "${RootDir}/command/${command}.sh" "$*"
