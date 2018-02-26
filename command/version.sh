@@ -1,20 +1,20 @@
 #!/bin/bash
 ### command/version.sh ###
 
-[ ! -d "$(pwd)/.git" ] && output.fatalerror "This is not GIT repository !" && exit 52
+[ ! -d "$(pwd)/.git" ] && printer.fatalerror "This is not GIT repository !" && exit 52
 
 # shellcheck disable=SC2154
 if [[ -f VERSION ]]; then
     CurrentVersion=$(cat VERSION)
 else
     CurrentVersion="0.0.0"
-    output.warning "VERSION file not found. It will be created !"
+    printer.warning "VERSION file not found. It will be created !"
 fi
 export CurrentVersion
 
 ## If called without argument print "Current Version" & exit
 if [[ -z "$1" ]]; then
-    output.green "$CurrentVersion"
+    printer.green "$CurrentVersion"
     exit 0
 fi
 
@@ -42,8 +42,8 @@ case "$1" in
         then
             NewVersion="$1"
         else
-            output.error "Only accept Semantic Version major.minor.patch[-pre_release]"
-            output.suggest "See https://semver.org/"
+            printer.error "Only accept Semantic Version major.minor.patch[-pre_release]"
+            printer.suggest "See https://semver.org/"
             exit 40
         fi
         ;;
@@ -52,13 +52,13 @@ esac
 ### @DEBUG
 Debug=true
 if [[ $Debug = true ]]; then
-    output.yellow "Old Version : $CurrentVersion"
-    output.yellow "New Version : ${NewVersion}"
+    printer.yellow "Old Version : $CurrentVersion"
+    printer.yellow "New Version : ${NewVersion}"
 fi
 
 
 ## Set new version in VERSION file
-echo "$NewVersion" > VERSION && output.success "New Version : ${NewVersion}"
+echo "$NewVersion" > VERSION && printer.success "New Version : ${NewVersion}"
 
 ## Commit New Version
 CommitComment="New Version ${NewVersion}"
