@@ -1,9 +1,9 @@
 #!/bin/bash
 ### command/version.sh ###
+#@DESCRIPTION: Manage Semantic Version (and git tags)
 
 [ ! -d "$(pwd)/.git" ] && printer.fatalerror "This is not GIT repository !" && exit 52
 
-# shellcheck disable=SC2154
 if [[ -f VERSION ]]; then
     CurrentVersion=$(cat VERSION)
 else

@@ -14,13 +14,13 @@ export -f printer.print
 
 function printer.green()
 {
-    printer.print "${colors_Green}${*}"
+    printer.print "${colors_Green0}${*}"
 }
 export -f printer.green
 
 function printer.red()
 {
-    printer.print "${colors_Red}${*}"
+    printer.print "${colors_Red0}${*}"
 }
 export -f printer.red
 
@@ -42,13 +42,13 @@ export -f printer.cyan
 
 function printer.success()
 {
-    printer.green "[SUCCESS]: ${*}"
+    printer.print "${colors_Green}[SUCCESS]: ${*}"
 }
 export -f printer.success
 
 function printer.fatalerror()
 {
-    printer.red "[FATAL ERROR]: ${*}"
+    printer.print "${colors_Red}[FATAL ERROR]: ${*}"
 }
 export -f printer.fatalerror
 
@@ -70,4 +70,19 @@ function printer.suggest()
 }
 export -f printer.suggest
 
+#########################
+### Section: SPECIALS ###
+#########################
 
+function printer.listitem()
+{
+    local length1=${#1}
+    #echo "$length1"
+    local nspace=$((12 - length1))
+    local sp
+    for (( i = 0; i < nspace; i++ )); do
+        sp="${sp} "
+    done
+    echo -e "  ${colors_Green0}${1}${sp}\t${colors_Eoc}${2}"
+}
+export -f printer.listitem
