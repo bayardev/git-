@@ -2,6 +2,6 @@
 
 ## Bash Git Helper
 
-## Scripts List :
+## Command List :
 
-- git-version-upgrade.sh
+- **version** : with semantic version management
