@@ -1,19 +1,18 @@
 #!/bin/bash
-# git++
+### git++ ###
 
 export RootDir=${RootDir:-$(dirname "$(readlink -f "$0")")}
-#echo $RootDirgit st
 
-# Include bootstrap
-[ ! -f "${RootDir}/bootstrap" ] && echo -e "\e[1;31m(50) FATAL ERROR: Missing 'bootstrap' file\e[0m" && exit 50
+## Include bootstrap
+[ ! -f "${RootDir}/bootstrap" ] && echo -e "\\e[1;31m(50) FATAL ERROR: Missing 'bootstrap' file\\e[0m" && exit 50
+# shellcheck source=bootstrap
 . "${RootDir}/bootstrap"
 
-# Get [command] argument
+## Get [command] argument
 [ -z "$1" ] && output.error "Missing [command] argument" && exit 1
 command="$1"
-#echo "$command"
 export Command="${RootDir}/command/${command}.sh"
 
-# Execute [command]
+## Execute [command]
 [ ! -x "$Command" ] && output.fatalerror "script ${Command} is not executable" && exit 50
-${RootDir}/command/${command}.sh
+"${RootDir}/command/${command}.sh"

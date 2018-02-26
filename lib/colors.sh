@@ -1,5 +1,5 @@
 #!/bin/bash
-# lib/colors.sh
+### lib/colors.sh ###
 
 ### COLORS VARIABLES
 export colors_Eoc='\e[0m'

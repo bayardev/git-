@@ -1,8 +1,9 @@
 #!/bin/bash
-# bootstrap
+### bootstrap ###
 
-# Load libraries
-for lib in `ls "${RootDir}/lib"`; do
-    #echo "${RootDir}/lib/${lib}"
-    . "${RootDir}/lib/${lib}"
+# shellcheck disable=SC2154
+for lib in ${RootDir}/lib/*.sh; do
+    [ -e "$lib" ] || continue
+    # shellcheck disable=SC1090
+    . "${lib}"
 done

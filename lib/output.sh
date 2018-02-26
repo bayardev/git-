@@ -1,5 +1,6 @@
 #!/bin/bash
-# lib/output.sh
+# shellcheck disable=SC2154
+### lib/output.sh ###
 
 function output.print()
 {
