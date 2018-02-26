@@ -8,34 +8,66 @@ function output.print()
 }
 export -f output.print
 
-function output.fatalerror()
+#######################
+### Section: COLORS ###
+#######################
+
+function output.green()
 {
-    output.print "${colors_Red}" "[FATAL ERROR]: " "$1"
+    output.print "${colors_Green}${*}"
 }
-export -f output.fatalerror
+export -f output.green
+
+function output.red()
+{
+    output.print "${colors_Red}${*}"
+}
+export -f output.red
+
+function output.yellow()
+{
+    output.print "${colors_Yellow0}${*}"
+}
+export -f output.yellow
+
+function output.cyan()
+{
+    output.print "${colors_Cyan0}${*}"
+}
+export -f output.cyan
+
+#######################
+### Section: LABELS ###
+#######################
 
 function output.success()
 {
-    output.print "${colors_Green}" "[SUCCESS]: " "$1"
+    output.green "[SUCCESS]: ${*}"
 }
 export -f output.success
 
+function output.fatalerror()
+{
+    output.red "[FATAL ERROR]: ${*}"
+}
+export -f output.fatalerror
+
 function output.error()
 {
-    output.print "${colors_Red}" "[ERROR]: " "$1"
+    output.red "[ERROR]: ${*}"
 }
 export -f output.error
 
 function output.warning()
 {
-    output.print "${colors_Yellow0}" "[WARNING]: " "$1"
+    output.yellow "[WARNING]: ${*}"
 }
 export -f output.warning
 
-function output.green()
+function output.suggest()
 {
-    output.print "${colors_Green}${1}"
+    output.cyan "[SUGGESTION]: ${*}"
 }
-export -f output.green
+export -f output.suggest
 
 
