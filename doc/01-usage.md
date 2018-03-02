@@ -1,4 +1,4 @@
-# git++ usage
+# 01. USAGE
 
 To get help use **_help_** command on your terminal :
 ```bash
