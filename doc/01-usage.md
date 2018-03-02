@@ -9,3 +9,6 @@ For a complete lis of availables commands use **_list_** command :
 ```bash
 git++ list
 ```
+
+---
+[Back to index](00-index.md)

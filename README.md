@@ -15,6 +15,7 @@ ln -s /opt/git-plus-plus/git++ /usr/local/bin/git++
 ## Usage
 
 For usage, see [the doc usage page](doc/01-usage.md)
+
 For a full list of doc pages, see [the doc index](doc/00-index.md)
 
 ## Requirements
