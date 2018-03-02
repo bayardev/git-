@@ -2,7 +2,7 @@
 ### bootstrap ###
 
 # shellcheck disable=SC2154
-for lib in ${RootDir}/lib/*.sh; do
+for lib in ${RootDir}/lib/*.sh ${RootDir}/usr/lib/*.sh; do
     [ -e "$lib" ] || continue
     # shellcheck disable=SC1090
     . "${lib}"

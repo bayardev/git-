@@ -1,5 +1,5 @@
 #!/bin/bash
-### command/list.sh ###
+### command/help.sh ###
 #@DESCRIPTION: Print HELP (temporarly execute 'list' command)
 
 # shellcheck disable=SC2154

@@ -11,8 +11,15 @@ export RootDir=${RootDir:-$(dirname "$(readlink -f "$0")")}
 ## Get [command] argument
 [ -z "$1" ] && printer.warning "Missing [command] argument" && exit 1
 command="$1"
-export Command="${RootDir}/command/${command}.sh"
+
+if [[ -x "${RootDir}/command/${command}.sh" ]]; then
+    export Command="${RootDir}/command/${command}.sh"
+elif [[ -x "${RootDir}/usr/command/${command}.sh" ]]; then
+    export Command="${RootDir}/usr/command/${command}.sh"
+else
+    printer.fatalerror "script ${Command} is not executable"
+    exit 50
+fi
 
 ## Execute [command]
-[ ! -x "$Command" ] && printer.fatalerror "script ${Command} is not executable" && exit 50
-shift && "${RootDir}/command/${command}.sh" "$*"
+shift && "$Command" "$*"

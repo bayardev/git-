@@ -74,6 +74,12 @@ export -f printer.suggest
 ### Section: SPECIALS ###
 #########################
 
+function printer.title()
+{
+    printer.print "${colors_Title}${*}"
+}
+export -f printer.title
+
 function printer.listitem()
 {
     local length1=${#1}

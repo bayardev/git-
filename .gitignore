@@ -3,3 +3,7 @@ composer.phar
 *.nogit*
 *.old*
 .~lock*
+usr/command/*
+!usr/command/hello.sh
+usr/lib/*
+!usr/lib/hello.sh

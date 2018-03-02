@@ -1,7 +1,8 @@
 #!/bin/bash
 ### lib/colors.sh ###
 
-### COLORS VARIABLES
+## COLORS VARIABLES
+## foreground
 export colors_Eoc='\e[0m'
 export colors_Blue='\e[1;34m'
 export colors_Blue0='\e[0;34m'
@@ -17,3 +18,7 @@ export colors_Yellow='\e[1;33m'
 export colors_Yellow0='\e[0;33m'
 export colors_White0='\e[0;37m'
 export colors_White='\e[1;37m'
+## background
+export colors_BViolet='\e[45m'
+## mixin
+export colors_Title="${colors_BViolet}${colors_White}"
