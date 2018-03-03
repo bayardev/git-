@@ -2,6 +2,21 @@
 ### command/version.sh ###
 #@DESCRIPTION: Manage Semantic Version (and git tags)
 
+#@HELP:[%yellow%]Usage:
+#@HELP:    git++ version [major|minor|patch|<semver version number>]
+#@HELP:[%yellow%]Without Arguments:
+#@HELP:    print current version
+#@HELP:[%yellow%]Possibles Arguments:
+#@HELP:    [%green%]major
+#@HELP:        upgrade to next major (ex. 0.2.1 -> 1.0.0)
+#@HELP:    [%green%]minor
+#@HELP:        upgrade to next minor (ex. 0.2.1 -> 0.3.0)
+#@HELP:    [%green%]patch
+#@HELP:        upgrade to next patch (ex. 0.2.1 -> 0.2.2)
+#@HELP:    [%green%]<semver version number>
+#@HELP:        upgrade version as the argument given
+#@HELP:        Only accept Semantic Version major.minor.patch[-pre_release]
+
 [ ! -d "$(pwd)/.git" ] && printer.fatalerror "This is not GIT repository !" && exit 52
 
 if [[ -f VERSION ]]; then

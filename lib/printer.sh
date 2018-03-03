@@ -48,7 +48,7 @@ export -f printer.success
 
 function printer.fatalerror()
 {
-    printer.print "${colors_Red}[FATAL ERROR]: ${*}"
+    printer.red "[FATAL ERROR]: ${*}"
 }
 export -f printer.fatalerror
 
@@ -73,6 +73,14 @@ export -f printer.suggest
 #########################
 ### Section: SPECIALS ###
 #########################
+
+function printer.verbose()
+{
+    if [[ $Verbose = true ]]; then
+        printer.print "${colors_Violet0}${*}"
+    fi
+}
+export -f printer.verbose
 
 function printer.title()
 {
