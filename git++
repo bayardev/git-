@@ -9,7 +9,7 @@ export RootDir=${RootDir:-$(dirname "$(readlink -f "$0")")}
 # shellcheck disable=SC1090
 . "${RootDir}/bootstrap"
 
-result=$(core.command_exists "$1")
+result=$(core.commandExists "$1")
 status=$?
 [ $status != 0 ] && core.exit "$result" $status
 

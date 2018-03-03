@@ -1,7 +1,8 @@
 #!/bin/bash
+### lib/core.sh ###
 
 # shellcheck disable=SC2154
-function core.command_exists()
+function core.commandExists()
 {
     [ -z "$1" ] && printer.error "Missing [command] argument" && return 40
 
@@ -22,7 +23,15 @@ function core.command_exists()
     echo "$cmd"
     return 0
 }
-export -f core.command_exists
+export -f core.commandExists
+
+function core.functionExists()
+{
+    type -t "$1"
+    return $?
+
+}
+export -f core.functionExists
 
 function core.exit()
 {
