@@ -1,9 +1,9 @@
 #!/bin/bash
 ### command/version.sh ###
-#@DESCRIPTION: Manage Semantic Version (and git tags)
+#@DESCRIPTION: Manage Semantic Version (with git tags)
 
 #@HELP:[%yellow%]Usage:
-#@HELP:    git++ version [major|minor|patch|<semver version number>]
+#@HELP:    version [major|minor|patch|<semver version number>]
 #@HELP:[%yellow%]Without Arguments:
 #@HELP:    print current version
 #@HELP:[%yellow%]Possibles Arguments:
