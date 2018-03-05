@@ -64,13 +64,10 @@ case "$1" in
         ;;
 esac
 
-### @DEBUG
-Debug=true
-if [[ $Debug = true ]]; then
-    printer.yellow "Old Version : $CurrentVersion"
-    printer.yellow "New Version : ${NewVersion}"
-fi
 
+## verbose versions infos
+printer.verbose "Old Version : $CurrentVersion"
+printer.verbose "New Version : ${NewVersion}"
 
 ## Set new version in VERSION file
 echo "$NewVersion" > VERSION && printer.success "New Version : ${NewVersion}"
