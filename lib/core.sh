@@ -49,7 +49,8 @@ function core.options()
     while getopts ":hv" opt "${OPTSARGS[@]}"; do
         case "$opt" in
             h) # Exec help command
-                export Help="help"
+                # shellcheck disable=SC2154
+                "${RootDir}/command/help.sh" && exit 0;
                 ;;
             v) # Set Verbose
                 export Verbose="verbose"
