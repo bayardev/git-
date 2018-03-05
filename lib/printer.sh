@@ -76,7 +76,7 @@ export -f printer.suggest
 
 function printer.verbose()
 {
-    if [[ $Verbose = true ]]; then
+    if [[ $Verbose = "verbose" ]]; then
         printer.print "${colors_Violet0}${*}"
     fi
 }

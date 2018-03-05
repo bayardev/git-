@@ -1,6 +1,5 @@
 #!/bin/bash
 ### git++ ###
-export Verbose=true
 
 export RootDir=${RootDir:-$(dirname "$(readlink -f "$0")")}
 
@@ -8,6 +7,11 @@ export RootDir=${RootDir:-$(dirname "$(readlink -f "$0")")}
 [ ! -f "${RootDir}/bootstrap" ] && echo -e "\\e[1;31m(50) FATAL ERROR: Missing 'bootstrap' file\\e[0m" && exit 50
 # shellcheck disable=SC1090
 . "${RootDir}/bootstrap"
+
+## Parse options
+(($#)) && export OPTSARGS=("$@")
+core.options
+shift "$((OPTIND-1))"
 
 result=$(core.commandExists "$1")
 status=$?

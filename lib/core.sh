@@ -40,3 +40,27 @@ function core.exit()
     exit "$2"
 }
 export -f core.exit
+
+function core.options()
+{
+    # A POSIX variable
+    OPTIND=1         # Reset in case getopts has been used previously in the shell.
+
+    while getopts ":hv" opt "${OPTSARGS[@]}"; do
+        case "$opt" in
+            h) # Exec help command
+                export Help="help"
+                ;;
+            v) # Set Verbose
+                export Verbose="verbose"
+                ;;
+            :) # If Option require an argument and none given Exit with Error
+                core.exit "$(printer.fatalerror "Option '-$OPTARG' require a value")" 40
+                ;;
+            ? | *) # If not valid Option : print Warning
+                printer.warning "Option '-$OPTARG' not Valid !"
+                ;;
+        esac
+    done
+}
+export -f core.options
