@@ -20,10 +20,10 @@ For a full list of doc pages, see [the doc index](doc/00-index.md)
 
 ## Requirements
 
-- **git**
-- **bash**
-
-*no kidding !* **;)**
+- **git** *no kidding !* **;)**
+- **bash >=4.2**
+- **sed (GNU sed)**
+- **coreutils (GNU coreutils)**
 
 ## License
 
