@@ -27,7 +27,7 @@ export -f core.commandExists
 
 function core.functionExists()
 {
-    type -t "$1"
+    type -t "$1" >/dev/null
     return $?
 
 }

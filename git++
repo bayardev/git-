@@ -19,4 +19,4 @@ status=$?
 
 export Command="$result"
 ## Execute [command]
-shift && "$Command" "$*"
+shift && "$Command" $*
