@@ -1,15 +1,6 @@
 #!/bin/bash
 ### usr/lib/install.sh ###
 
-function install.help()
-{
-    echo ""
-    echo "  -c 		Intall composer package"
-    echo "  -h     	Display this help message and exit"
-    echo ""
-}
-export -f install.help
-
 function install.composer()
 {
 	if [ -f "composer.json" ]; then

@@ -4,7 +4,7 @@
 # shellcheck disable=SC2154
 function core.commandExists()
 {
-    [ -z "$1" ] && printer.error "Missing [command] argument" && return 40
+    [ -z "$1" ] && printer.error "Missing [command] argument" && return 40https://github.com/bayardev/rolling-log.git
 
     local cmd="$1"
 

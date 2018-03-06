@@ -1,13 +1,26 @@
 #!/bin/bash
+### command/help.sh ###
+#@DESCRIPTION: Clone git repository with addiionnals options
+#@HELP:[%yellow%]Usage:
+#@HELP:    install  [-h] [[-c] <repository> [<path>]
+#@HELP:[%yellow%]Possibles Arguments:
+#@HELP:    [%green%]<repository> [<path>]
+#@HELP:          Clone <repository> in <path> (default in current path)
+#@HELP:    [%green%]-c <repository> <path>
+#@HELP:         Install composer package after clone repository if "composer.json" exists
+#@HELP:    [%green%]-h
+#@HELP:         Display this help message and exit
 
 # A POSIX variable
 OPTIND=1         # Reset in case getopts has been used previously in the shell.
+
+echo $0
 
 while getopts ":hc" opt; do
     case "$opt" in
         h) # Exec help command
             # shellcheck disable=SC2154
-            install.help && exit 0;
+            "${RootDir}/command/help.sh" "$(basename "$0" .sh)" && exit 0; 
             ;;
         c) # Set Verbose
             Composer="composer"
