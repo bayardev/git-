@@ -19,6 +19,23 @@
 
 [ ! -d "$(pwd)/.git" ] && printer.fatalerror "This is not GIT repository !" && exit 52
 
+## OPTIONS
+OPTIND=1         # Reset in case getopts has been used previously in the shell.
+while getopts ":s" opt; do
+    case "$opt" in
+        s) # Set Verbose
+            Sign="sign"
+            ;;
+        :) # If Option require an argument and none given Exit with Error
+            core.exit "$(printer.fatalerror "Option '-$OPTARG' require a value")" 40
+            ;;
+        ? | *) # If not valid Option : print Warning
+            printer.warning "Option '-$OPTARG' not Valid !"
+            ;;
+    esac
+done
+shift "$((OPTIND-1))"
+
 if [[ -f VERSION ]]; then
     CurrentVersion=$(cat VERSION)
 else
@@ -77,7 +94,11 @@ CommitComment="New Version ${NewVersion}"
 git add VERSION && \
 git commit -m "$CommitComment" VERSION && \
 ## Set next git tag
-git tag -a "v${NewVersion}" -m "$CommitComment" "$(git log --format="%H" -n 1)" || \
+OptAddTag="-a"
+if [[ "$Sign" = "sign" ]]; then
+    OptAddTag="-s"
+fi
+git tag "$OptAddTag" "v${NewVersion}" -m "$CommitComment" "$(git log --format="%H" -n 1)" || \
 exit $?
 
 ## Exit GOOD :)
