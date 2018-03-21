@@ -3,7 +3,13 @@
 #@DESCRIPTION: Manage Semantic Version (with git tags)
 
 #@HELP:[%yellow%]Usage:
-#@HELP:    version [major|minor|patch|<semver version number>]
+#@HELP:    version [-options] [major|minor|patch|<semver version number>]
+#@HELP:[%yellow%]Options:
+#@HELP:    [%green%]-s
+#@HELP:        sign nex version tag with gpg key
+#@HELP:    [%green%]-p [prefix]
+#@HELP:        set tag prefix [default: 'v']
+#@HELP:        `-p false` if you don't want prefix
 #@HELP:[%yellow%]Without Arguments:
 #@HELP:    print current version
 #@HELP:[%yellow%]Possibles Arguments:
@@ -21,10 +27,13 @@
 
 ## OPTIONS
 OPTIND=1         # Reset in case getopts has been used previously in the shell.
-while getopts ":s" opt; do
+while getopts ":sp:" opt; do
     case "$opt" in
         s) # Set Verbose
-            Sign="sign"
+            Signed="signed"
+            ;;
+        p) # Set Verbose
+            TagPrefix="$OPTARG"
             ;;
         :) # If Option require an argument and none given Exit with Error
             core.exit "$(printer.fatalerror "Option '-$OPTARG' require a value")" 40
@@ -93,12 +102,18 @@ echo "$NewVersion" > VERSION && printer.success "New Version : ${NewVersion}"
 CommitComment="New Version ${NewVersion}"
 git add VERSION && \
 git commit -m "$CommitComment" VERSION && \
+
+## Default Value for "$Prefix"
+TagPrefix=${TagPrefix:-"v"}
+## if got 'false' set to empty string
+[ "$TagPrefix" = "false" ] && TagPrefix=""
 ## Set next git tag
 OptAddTag="-a"
-if [[ "$Sign" = "sign" ]]; then
+if [[ "$Signed" = "signed" ]]; then
     OptAddTag="-s"
 fi
-git tag "$OptAddTag" "v${NewVersion}" -m "$CommitComment" "$(git log --format="%H" -n 1)" || \
+
+git tag "$OptAddTag" "${TagPrefix}${NewVersion}" -m "$CommitComment" "$(git log --format="%H" -n 1)" || \
 exit $?
 
 ## Exit GOOD :)

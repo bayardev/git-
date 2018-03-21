@@ -17,6 +17,7 @@ result=$(core.commandExists "$1")
 status=$?
 [ $status != 0 ] && core.exit "$result" $status
 
-export Command="$result"
 ## Execute [command]
+export Command="$result"
+# shellcheck disable=SC2048,2086
 shift && "$Command" $*
