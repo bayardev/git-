@@ -60,6 +60,7 @@ if [[ -z "$1" ]]; then
 fi
 
 set -f
+#shellcheck disable=SC2206
 export SemVer=(${CurrentVersion//./ })
 
 case "$1" in

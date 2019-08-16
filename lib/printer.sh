@@ -97,6 +97,6 @@ function printer.listitem()
     for (( i = 0; i < nspace; i++ )); do
         sp="${sp} "
     done
-    echo -e "  ${colors_Green0}${1}${sp}\t${colors_Eoc}${2}"
+    echo -e "  ${colors_Green0}${1}${sp}\\t${colors_Eoc}${2}"
 }
 export -f printer.listitem

@@ -5,15 +5,9 @@ function helper.getCmdHelp()
 {
     local filename=${1?"$(error.missingArg 1)"}
 
-    helper.funcHelp "$filename"
-    if [[ $? -eq 0 ]]; then
-        return 0;
-    fi
+    helper.funcHelp "$filename" && return 0;
 
-    helper.innerHelp "$filename"
-    if [[ $? -eq 0 ]]; then
-        return 0;
-    fi
+    helper.innerHelp "$filename" && return 0;
 
     printer.warning "No help found for command '$(basename "$filename" .sh)'"
     return 44;
@@ -44,14 +38,12 @@ function helper.funcHelp()
     local filename=${1?"$(error.missingArg 1)"}
     local cmdname; cmdname="$(basename "$filename" .sh)"
 
-    core.functionExists "${cmdname}.help"
-    if [[ $? -eq 0 ]]; then
+    if core.functionExists "${cmdname}.help"; then
         "${cmdname}.help"
         return 0;
     fi
 
-    core.functionExists "help.${cmdname}"
-    if [[ $? -eq 0 ]]; then
+    if core.functionExists "help.${cmdname}"; then
         "help.${cmdname}"
         return 0;
     fi
